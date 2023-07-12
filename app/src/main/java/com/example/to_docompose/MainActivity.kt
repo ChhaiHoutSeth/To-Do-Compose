@@ -17,7 +17,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             ToDoComposeTheme {
-
+                Text(text = "Hello world")
             }
         }
     }
