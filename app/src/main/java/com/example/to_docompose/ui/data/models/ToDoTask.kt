@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.example.to_docompose.ui.util.Constant
 
-@Entity(tableName = Constant.DATABASE_NAME)
+@Entity(tableName = Constant.TABLE_NAME)
 data class ToDoTask(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
