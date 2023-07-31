@@ -1,7 +1,7 @@
-package com.example.to_docompose.ui.data
+package com.example.to_docompose.data
 
 import androidx.room.*
-import com.example.to_docompose.ui.data.models.ToDoTask
+import com.example.to_docompose.data.models.ToDoTask
 import kotlinx.coroutines.flow.Flow
 
 @Dao

@@ -1,4 +1,4 @@
-package com.example.to_docompose.ui.data.models
+package com.example.to_docompose.data.models
 
 import androidx.compose.ui.graphics.Color
 import com.example.to_docompose.ui.theme.highColor

@@ -1,4 +1,4 @@
-package com.example.to_docompose
+package com.example.to_docompose.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

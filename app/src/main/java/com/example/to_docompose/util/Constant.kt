@@ -1,4 +1,4 @@
-package com.example.to_docompose.ui.util
+package com.example.to_docompose.util
 
 object Constant {
     const val TABLE_NAME = "todo_table"

@@ -2,8 +2,8 @@ package com.example.to_docompose.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.to_docompose.ui.data.ToDoDatabase
-import com.example.to_docompose.ui.util.Constant
+import com.example.to_docompose.data.ToDoDatabase
+import com.example.to_docompose.util.Constant
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
