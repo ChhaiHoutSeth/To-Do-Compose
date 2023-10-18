@@ -4,11 +4,9 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.example.to_docompose.ui.screens.list.ListScreen
 import com.example.to_docompose.util.Action
 import com.example.to_docompose.util.Constant
-
-class TaskComposable {
-}
 
 fun NavGraphBuilder.taskComposable(navigationToListScreen: (Action) -> Unit) {
     composable(
@@ -17,6 +15,5 @@ fun NavGraphBuilder.taskComposable(navigationToListScreen: (Action) -> Unit) {
             type = NavType.IntType
         })
     ) {
-
     }
 }
