@@ -8,7 +8,7 @@ import com.example.to_docompose.ui.screens.list.ListScreen
 import com.example.to_docompose.util.Constant.LIST_ARGUMENT_KEY
 import com.example.to_docompose.util.Constant.LIST_SCREEN
 
-fun NavGraphBuilder.listComposable(navigationToTaskScreen: (Int) -> Unit) {
+fun NavGraphBuilder.listComposable(navigationToTaskScreen: (taskId: Int) -> Unit) {
     composable(
         route = LIST_SCREEN,
         arguments = listOf(navArgument(LIST_ARGUMENT_KEY) {

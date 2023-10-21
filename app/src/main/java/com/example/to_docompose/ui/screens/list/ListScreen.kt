@@ -3,6 +3,7 @@ package com.example.to_docompose.ui.screens.list
 import android.annotation.SuppressLint
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -11,11 +12,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.to_docompose.R
+import com.example.to_docompose.ui.theme.fabBackgroundColor
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun ListScreen(
-    navigationToTaskScreen: (Int) -> Unit
+    navigationToTaskScreen: (taskId: Int) -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -30,13 +32,16 @@ fun ListScreen(
 
 @Composable
 fun ListFab(
-    onFabClicked: (Int) -> Unit
+    onFabClicked: (taskId: Int) -> Unit
 ) {
-    FloatingActionButton(onClick = { onFabClicked(-1) }) {
+    FloatingActionButton(
+        onClick = { onFabClicked(-1) },
+        backgroundColor = MaterialTheme.colors.fabBackgroundColor
+    ) {
         Icon(
             imageVector = Icons.Filled.Add,
-            tint = Color.White,
-            contentDescription = stringResource(id = R.string.add_button)
+            contentDescription = stringResource(id = R.string.add_button),
+            tint = Color.White
         )
     }
 }
