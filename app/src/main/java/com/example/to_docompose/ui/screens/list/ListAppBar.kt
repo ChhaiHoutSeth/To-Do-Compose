@@ -41,18 +41,42 @@ import com.example.to_docompose.ui.theme.LARGE_PADDING
 import com.example.to_docompose.ui.theme.Typography
 import com.example.to_docompose.ui.theme.topAppBarBackgroundColor
 import com.example.to_docompose.ui.theme.topAppBarContentColor
+import com.example.to_docompose.ui.viewmodels.SharedViewModel
+import com.example.to_docompose.util.SearchAppBarState
+import com.example.to_docompose.util.TrailingIconState
 
 @Composable
-fun ListAppBar() {
-//    DefaultListAppBar(
-//        onSearchClicked = {},
-//        onSortClicked = {},
-//        onDeleteClicked = {}
-//    )
+fun ListAppBar(
+    sharedViewModel: SharedViewModel,
+    searchAppBarState: SearchAppBarState,
+    searchTextState: String
+) {
+    when (searchAppBarState) {
+        SearchAppBarState.CLOSED -> {
+            DefaultListAppBar(
+                onSearchClicked = {
+                    sharedViewModel.searchAppBarState.value = SearchAppBarState.OPENED
+                },
+                onSortClicked = {},
+                onDeleteClicked = {}
+            )
+        }
 
-    SearchAppBar(text = "", onTextChanged = {}, onCloseClicked = { }) {
-
+        else -> {
+            SearchAppBar(
+                text = searchTextState,
+                onTextChanged = { newText ->
+                    sharedViewModel.searchTextState.value = newText
+                },
+                onCloseClicked = {
+                    sharedViewModel.searchAppBarState.value = SearchAppBarState.CLOSED
+                    sharedViewModel.searchTextState.value = ""
+                },
+                onSearchClicked = {}
+            )
+        }
     }
+
 }
 
 @Composable
@@ -195,6 +219,10 @@ fun SearchAppBar(
     onCloseClicked: () -> Unit,
     onSearchClicked: (String) -> Unit
 ) {
+    var trailingIconState by remember {
+        mutableStateOf(TrailingIconState.READY_TO_DELETE)
+    }
+
     Surface(
         modifier = Modifier
             .fillMaxWidth()
@@ -234,7 +262,23 @@ fun SearchAppBar(
             },
             trailingIcon = {
                 IconButton(
-                    onClick = { onCloseClicked() }
+                    onClick = {
+                        when (trailingIconState) {
+                            TrailingIconState.READY_TO_DELETE -> {
+                                onTextChanged("")
+                                trailingIconState = TrailingIconState.READY_TO_CLOSE
+                            }
+
+                            TrailingIconState.READY_TO_CLOSE -> {
+                                if (text.isNotEmpty()) {
+                                    onTextChanged("")
+                                } else {
+                                    onCloseClicked()
+                                    trailingIconState = TrailingIconState.READY_TO_DELETE
+                                }
+                            }
+                        }
+                    }
                 ) {
                     Icon(
                         imageVector = Icons.Filled.Close,
